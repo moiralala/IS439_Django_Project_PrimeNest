@@ -1,4 +1,4 @@
-# README
+# PrimeNest -- Discover Your Ideal Apartment
 
 ## About Project
 
