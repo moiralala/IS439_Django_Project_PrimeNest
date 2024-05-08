@@ -46,10 +46,11 @@ This system ensures that each user interacts with PrimeNest in a way that respec
 
 
 ### [User Groups of PrimeNest](https://github.com/moiralala/IS439_Django_Project/tree/main/wang_chenzhao_final_project/doc/users_for_PrimeNest.png)
-![users_for_PrimeNest.png](wang_chenzhao_final_project%2Fdoc%2Fusers_for_PrimeNest.png)
+<img src="wang_chenzhao_final_project/doc/users_for_PrimeNest.png" width="400">
 
 ### [Permissions for user Groups of PrimeNest](https://github.com/moiralala/IS439_Django_Project/tree/main/wang_chenzhao_final_project/doc/users_and_user_permission_for_PrimeNest.jpg)
-![users_and_user_permission_for_PrimeNest.jpg](wang_chenzhao_final_project%2Fdoc%2Fusers_and_user_permission_for_PrimeNest.jpg)
+<img src="wang_chenzhao_final_project/doc/users_and_user_permission_for_PrimeNest.jpg" width="400">
+
 
 
 ## Testing Instructions
