@@ -1,0 +1,22 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Error Deleting Availability
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Availability</h2>
+        <p>
+            You may not delete this availability as it is currently linked to applications:
+        </p>
+        <ul>
+            {% for application in applications %}
+                <li><a href="{{ application.get_absolute_url }}">{{ application.tenant.first_name }} {{ application.tenant.last_name }}</a></li>
+            {% endfor %}
+        </ul>
+        <p>
+            Return to <a href="{% url 'primenest_availability_list_urlpattern' %}">Availability List</a>.
+        </p>
+    </div>
+{% endblock %}

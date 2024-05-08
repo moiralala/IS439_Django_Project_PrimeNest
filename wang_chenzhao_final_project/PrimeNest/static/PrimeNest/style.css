@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #F7F0EA; /* Light cream background for the whole page */
+    color: #333; /* Dark gray text color for contrast */
+}
+
+header {
+    background: #ACD4D6; /* Light sea green header background */
+    color: #fff; /* White text in the header for readability */
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: white; /* White text links in the navigation */
+    text-decoration: none;
+    padding: 5px 10px; /* Padding for better touch area */
+    background-color: #9AA2AD; /* Light gray background for nav items */
+    border-radius: 5px; /* Rounded corners for nav links */
+}
+
+nav ul li a:hover {
+    background-color: #ACD4D6; /* Hover color change for nav links */
+    color: #333; /* Darker text on hover for better visibility */
+}
+
+main {
+    padding: 20px;
+    background: white; /* Keeping the main content area white for clarity */
+    width: 80%;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners for the main content area */
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #ACD4D6;
+    color: gray; /* White text in the footer for readability */
+}
+
+h1, h2 {
+    color: #333; /* Dark gray titles to stand out against lighter backgrounds */
+}
+
+/* Additional styling for accessibility and aesthetics */
+button, input[type="submit"], input[type="button"] {
+    background-color: #ACD4D6;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #D2D3D5;
+}
+
+
+.container {
+    width: 100%; /* Container takes the full width of the viewport */
+    max-width: 1200px; /* Maximum width to ensure content does not stretch too far on larger screens */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Padding for some breathing room */
+}
+
+.row {
+    display: flex; /* Using flexbox for the row */
+    flex-wrap: wrap; /* Allows items to wrap in smaller screens */
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.column {
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 1; /* Flex grow */
+}
+
+/* Specific column sizes */
+.four.columns {
+    flex: 0 0 33.33333%; /* Takes up one-third of the row */
+    max-width: 33.33333%; /* Maximum width of one-third */
+}
+
+/* Offset classes */
+.offset-by-eight {
+    margin-left: 66.66667%; /* Offsets the element by eight columns (two-thirds of the container) */
+}
+
+@media (max-width: 768px) {
+    .offset-by-eight {
+        margin-left: 0; /* Remove the offset on smaller screens */
+    }
+
+    .column {
+        flex: 0 0 100%; /* Full width on smaller screens */
+        max-width: 100%; /* Maximum width is full width */
+    }
+}

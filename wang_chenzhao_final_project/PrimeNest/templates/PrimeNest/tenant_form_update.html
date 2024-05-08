@@ -1,0 +1,15 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Update Tenant
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ tenant.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button button-primary">Update Tenant</button>
+    </form>
+{% endblock %}

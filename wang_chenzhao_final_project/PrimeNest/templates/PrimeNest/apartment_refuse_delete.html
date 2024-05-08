@@ -1,0 +1,28 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Error Deleting Apartment
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Apartment</h2>
+        <p>
+            You may not delete the apartment at "{{ apartment.address }}" as it is currently linked to availabilities, reviews, or ratings:
+        </p>
+        <ul>
+            {% for availability in availabilities %}
+                <li><a href="{{ availability.get_absolute_url }}">{{ availability.apartment.address }} - Available</a></li>
+            {% endfor %}
+            {% for review in reviews %}
+                <li><a href="{{ review.get_absolute_url }}">{{ review.content|truncatewords:5 }}</a></li>
+            {% endfor %}
+            {% for rating in ratings %}
+                <li>Rating: {{ rating.score }} - {{ rating.tenant.first_name }}</li>
+            {% endfor %}
+        </ul>
+        <p>
+            Return to <a href="{% url 'primenest_apartment_list_urlpattern' %}">Apartment List</a>.
+        </p>
+    </div>
+{% endblock %}

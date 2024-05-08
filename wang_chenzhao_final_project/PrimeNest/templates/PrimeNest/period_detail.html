@@ -1,0 +1,37 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Period - {{ period.id }}
+{% endblock %}
+
+{% block content %}
+    <h2>Period Details</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_period %}
+            <li>
+                <a href="{{ period.get_update_url }}" class="button button-primary">Edit Period</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_period %}
+            <li>
+                <a href="{{ period.get_delete_url }}" class="button button-primary">Delete Period</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <h3>Time Frame</h3>
+        <p>Start Date: {{ period.start_date|date:"Y-m-d H:i" }}</p>
+        <p>End Date: {{ period.end_date|date:"Y-m-d H:i" }}</p>
+        <p>Description: {{ period.description }}</p>
+
+        <h3>Availabilities in this Period</h3>
+        <ul>
+            {% for availability in availabilities %}
+                <li><a href="{{ availability.get_absolute_url }}">{{ availability.apartment.address }} - ${{ availability.price }}</a></li>
+            {% empty %}
+                <li><em>No availabilities found for this period.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

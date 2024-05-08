@@ -1,0 +1,22 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Error Deleting Agency
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Agency</h2>
+        <p>
+            You may not delete the agency "{{ agency.agency_name }}" as it currently manages the following apartments:
+        </p>
+        <ul>
+            {% for apartment in apartments %}
+                <li><a href="{{ apartment.get_absolute_url }}">{{ apartment.address }}</a></li>
+            {% endfor %}
+        </ul>
+        <p>
+            Return to <a href="{% url 'primenest_agency_list_urlpattern' %}">Agency List</a>.
+        </p>
+    </div>
+{% endblock %}

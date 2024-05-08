@@ -1,0 +1,31 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Apartment - {{ apartment.address }}
+{% endblock %}
+
+{% block content %}
+    <h2>Apartment Details</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_apartment %}
+            <li>
+                <a href="{{ apartment.get_update_url }}" class="button button-primary">Edit Apartment</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_apartment %}
+            <li>
+                <a href="{{ apartment.get_delete_url }}" class="button button-primary">Delete Apartment</a>
+            </li>
+        {% endif %}
+    </ul>
+    <section>
+        <h3>Apartment Information</h3>
+        <p>Address: {{ apartment.address }}</p>
+        <p>Number of Bedrooms: {{ apartment.bedroom }}</p>
+        <p>Number of Bathrooms: {{ apartment.bathroom }}</p>
+        <p>URL: <a href="{{ apartment.link }}">{{ apartment.link }}</a></p>
+        <p>Description: {{ apartment.description }}</p>
+        <p>Agency: {{ apartment.agency.agency_name }}</p>
+        <p>Type: {% if apartment.is_studio %}Studio{% else %}Standard Apartment{% endif %}</p>
+    </section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Application Detail - {{ tenant.first_name }} {{ tenant.last_name }}
+{% endblock %}
+
+{% block content %}
+    <h2>Application Details</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_application %}
+            <li>
+                <a href="{{ application.get_update_url }}" class="button button-primary">Edit Application</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_application %}
+            <li>
+                <a href="{{ application.get_delete_url }}" class="button button-primary">Delete Application</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <h3>Tenant Information</h3>
+        <p>Name: {{ tenant.first_name }} {{ tenant.last_name }}</p>
+        {% if tenant.disambiguator %}
+            <p>Additional Info: {{ tenant.disambiguator }}</p>
+        {% endif %}
+        <p>Phone: {{ tenant.phone }}</p>
+
+        <h3>Apartment Information</h3>
+        <p>Address: {{ availability.apartment.address }}</p>
+        <p>Bedrooms: {{ availability.apartment.bedroom }}</p>
+        <p>Bathrooms: {{ availability.apartment.bathroom }}</p>
+
+        <h3>Lease Details</h3>
+        <p>Price: ${{ availability.price }}</p>
+        <p>Lease Period: {{ availability.period.description }}</p>
+    </section>
+{% endblock %}

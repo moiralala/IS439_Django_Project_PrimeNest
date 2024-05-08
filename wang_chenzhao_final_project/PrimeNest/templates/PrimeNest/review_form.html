@@ -1,0 +1,15 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Create Review
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{% url 'primenest_review_create_urlpattern'%}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button button-primary">Create Review</button>
+    </form>
+{% endblock %}

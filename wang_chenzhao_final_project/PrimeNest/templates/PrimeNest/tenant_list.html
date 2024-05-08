@@ -1,0 +1,43 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Tenant List
+{% endblock %}
+
+{% block content %}
+    <h2>Tenant List</h2>
+    {% if perms.PrimeNest.add_tenant %}
+        <div>
+            <a href="{% url 'primenest_tenant_create_urlpattern' %}" class="button button-primary">
+                Create New Tenant
+            </a>
+        </div>
+    {% endif %}
+    <ul>
+        {% for tenant in tenant_list %}
+            <li>
+                <a href="{{ tenant.get_absolute_url }}">{{ tenant.first_name }} {{ tenant.last_name }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no tenants available.</em></li>
+        {% endfor %}
+    </ul>
+
+    {% if is_paginated %}
+        <ul>
+            {% if previous_page_url %}
+                <li>
+                    <a href="{{ previous_page_url }}">Previous</a>
+                </li>
+            {% endif %}
+            <li>
+                Page {{ tenant_list.number }} of {{ paginator.num_pages }}
+            </li>
+            {% if next_page_url %}
+                <li>
+                    <a href="{{ next_page_url }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}

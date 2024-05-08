@@ -1,0 +1,38 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Availability - {{ availability.id }}
+{% endblock %}
+
+{% block content %}
+    <h2>Availability Details</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_availability %}
+            <li>
+                <a href="{{ availability.get_update_url }}" class="button button-primary">Edit Availability</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_availability %}
+            <li>
+                <a href="{{ availability.get_delete_url }}" class="button button-primary">Delete Availability</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <h3>Apartment Information</h3>
+        <p>Address: {{ availability.apartment.address }}</p>
+        <p>Number of Bedrooms: {{ availability.apartment.bedroom }}</p>
+        <p>Number of Bathrooms: {{ availability.apartment.bathroom }}</p>
+        <p>Description: {{ availability.apartment.description }}</p>
+
+        <h3>Period Information</h3>
+        <p>Start Date: {{ availability.period.start_date|date:"Y-m-d H:i" }}</p>
+        <p>End Date: {{ availability.period.end_date|date:"Y-m-d H:i" }}</p>
+        <p>Description: {{ availability.period.description }}</p>
+
+        <h3>Price and Status</h3>
+        <p>Price: ${{ availability.price }}</p>
+        <p>Status: {% if availability.is_sold_out %}Sold Out{% else %}Available{% endif %}</p>
+    </section>
+{% endblock %}

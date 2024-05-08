@@ -1,0 +1,35 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Review by {{ review.tenant.first_name }} {{ review.tenant.last_name }}
+{% endblock %}
+
+{% block content %}
+    <h2>Review Details</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_review %}
+            <li>
+                <a href="{{ review.get_update_url }}" class="button button-primary">Edit Review</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_review %}
+            <li>
+                <a href="{{ review.get_delete_url }}" class="button button-primary">Delete Review</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <h3>Tenant Information</h3>
+        <p>Name: {{ review.tenant.first_name }} {{ review.tenant.last_name }}</p>
+        {% if review.tenant.disambiguator %}
+            <p>Additional Info: {{ review.tenant.disambiguator }}</p>
+        {% endif %}
+        <p>Phone: {{ review.tenant.phone }}</p>
+
+        <h3>Reviewed Apartment</h3>
+        <p>Address: {{ review.apartment.address }}</p>
+        <p>Review Content:</p>
+        <blockquote>{{ review.content }}</blockquote>
+    </section>
+{% endblock %}

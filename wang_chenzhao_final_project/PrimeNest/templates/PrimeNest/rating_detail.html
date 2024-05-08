@@ -1,0 +1,34 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Rating by {{ rating.tenant.first_name }} {{ rating.tenant.last_name }}
+{% endblock %}
+
+{% block content %}
+    <h2>Rating Details</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_rating %}
+            <li>
+                <a href="{{ rating.get_update_url }}" class="button button-primary">Edit Rating</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_rating %}
+            <li>
+                <a href="{{ rating.get_delete_url }}" class="button button-primary">Delete Rating</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <h3>Tenant Information</h3>
+        <p>Name: {{ rating.tenant.first_name }} {{ rating.tenant.last_name }}</p>
+        {% if rating.tenant.disambiguator %}
+            <p>Additional Info: {{ rating.tenant.disambiguator }}</p>
+        {% endif %}
+        <p>Phone: {{ rating.tenant.phone }}</p>
+
+        <h3>Rated Apartment</h3>
+        <p>Address: {{ rating.apartment.address }}</p>
+        <p>Score: {{ rating.score }}/5</p>
+    </section>
+{% endblock %}

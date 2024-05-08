@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}PrimeNest: Discover Your Ideal Apartment{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'PrimeNest/style.css' %}">
+</head>
+
+<body>
+    <div class="status row">
+        <div class="offset-by-eight four columns">
+            <ul class="inline">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout_urlpattern' %}">
+                        Log Out, {{ user.get_username }}</a></li>
+                {% else %}
+                    <li><a href="{% url 'login_urlpattern' %}">
+                        Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <header>
+        <h1>PrimeNest Portal</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'primenest_agency_list_urlpattern' %}">Agencies</a></li>
+                <li><a href="{% url 'primenest_tenant_list_urlpattern' %}">Tenants</a></li>
+                <li><a href="{% url 'primenest_apartment_list_urlpattern' %}">Apartments</a></li>
+                <li><a href="{% url 'primenest_application_list_urlpattern' %}">Applications</a></li>
+                <li><a href="{% url 'primenest_review_list_urlpattern' %}">Reviews</a></li>
+                <li><a href="{% url 'primenest_rating_list_urlpattern' %}">Ratings</a></li>
+                <li><a href="{% url 'primenest_availability_list_urlpattern' %}">Availabilities</a></li>
+                <li><a href="{% url 'primenest_period_list_urlpattern' %}">Periods</a></li>
+                <li><a href="{% url 'about_urlpattern' %}">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>PrimeNest © 2024</p>
+    </footer>
+</body>
+
+</html>

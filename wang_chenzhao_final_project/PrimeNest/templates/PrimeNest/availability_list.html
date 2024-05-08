@@ -1,0 +1,43 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Availability List
+{% endblock %}
+
+{% block content %}
+    <h2>Availability List</h2>
+    {% if perms.PrimeNest.add_availability %}
+        <div>
+            <a href="{% url 'primenest_availability_create_urlpattern' %}" class="button button-primary">
+                Create New Availability
+            </a>
+        </div>
+    {% endif %}
+    <ul>
+        {% for availability in availability_list %}
+            <li>
+                <a href="{{ availability.get_absolute_url }}">{{ availability }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no availabilities available.</em></li>
+        {% endfor %}
+    </ul>
+
+    {% if is_paginated %}
+        <ul>
+            {% if previous_page_url %}
+                <li>
+                    <a href="{{ previous_page_url }}">Previous</a>
+                </li>
+            {% endif %}
+            <li>
+                Page {{ availability_list.number }} of {{ paginator.num_pages }}
+            </li>
+            {% if next_page_url %}
+                <li>
+                    <a href="{{ next_page_url }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}

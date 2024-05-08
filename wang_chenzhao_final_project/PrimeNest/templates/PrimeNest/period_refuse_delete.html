@@ -1,0 +1,22 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Error Deleting Period
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Period</h2>
+        <p>
+            You may not delete this period as it is currently linked to availabilities:
+        </p>
+        <ul>
+            {% for availability in availabilities %}
+                <li><a href="{{ availability.get_absolute_url }}">{{ availability.apartment.address }}</a></li>
+            {% endfor %}
+        </ul>
+        <p>
+            Return to <a href="{% url 'primenest_period_list_urlpattern' %}">Period List</a>.
+        </p>
+    </div>
+{% endblock %}

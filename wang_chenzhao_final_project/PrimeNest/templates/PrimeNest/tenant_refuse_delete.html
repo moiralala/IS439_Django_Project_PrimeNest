@@ -1,0 +1,22 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Error Deleting Tenant
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Tenant</h2>
+        <p>
+            You may not delete tenant "{{ tenant.first_name }} {{ tenant.last_name }}" as they are associated with the following applications:
+        </p>
+        <ul>
+            {% for application in applications %}
+                <li><a href="{{ application.get_absolute_url }}">{{ application.availability.apartment.address }}</a></li>
+            {% endfor %}
+        </ul>
+        <p>
+            Return to <a href="{% url 'primenest_tenant_list_urlpattern' %}">Tenant List</a>.
+        </p>
+    </div>
+{% endblock %}

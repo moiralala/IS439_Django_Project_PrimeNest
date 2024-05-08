@@ -1,0 +1,41 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Tenant - {{ tenant.first_name }} {{ tenant.last_name }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ tenant.first_name }} {{ tenant.last_name }}</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_tenant %}
+            <li>
+                <a href="{{ tenant.get_update_url }}" class="button button-primary">Edit Tenant</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_tenant %}
+            <li>
+                <a href="{{ tenant.get_delete_url }}" class="button button-primary">Delete Tenant</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <p>Phone: {{ tenant.phone }}</p>
+    {% if tenant.disambiguator %}
+        <p>Additional Info: {{ tenant.disambiguator }}</p>
+    {% endif %}
+
+    <section>
+        <h3>Applications by this Tenant</h3>
+        <ul>
+            {% for application in applications %}
+                <li>
+                    <a href="{{ application.get_absolute_url }}">
+                        {{ application.availability.apartment.address }} - {{ application.status }}
+                    </a>
+                </li>
+            {% empty %}
+                <li><em>No applications found for this tenant.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

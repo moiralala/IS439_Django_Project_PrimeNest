@@ -1,0 +1,43 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Review List
+{% endblock %}
+
+{% block content %}
+    <h2>Review List</h2>
+    {% if perms.PrimeNest.add_review %}
+        <div>
+            <a href="{% url 'primenest_review_create_urlpattern' %}" class="button button-primary">
+                Create New Review
+            </a>
+        </div>
+    {% endif %}
+    <ul>
+        {% for review in review_list %}
+            <li>
+                <a href="{{ review.get_absolute_url }}">{{ review }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no reviews available.</em></li>
+        {% endfor %}
+    </ul>
+
+    {% if is_paginated %}
+        <ul>
+            {% if previous_page_url %}
+                <li>
+                    <a href="{{ previous_page_url }}">Previous</a>
+                </li>
+            {% endif %}
+            <li>
+                Page {{ review_list.number }} of {{ paginator.num_pages }}
+            </li>
+            {% if next_page_url %}
+                <li>
+                    <a href="{{ next_page_url }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}

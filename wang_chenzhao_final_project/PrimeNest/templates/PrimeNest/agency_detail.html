@@ -1,0 +1,38 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Agency - {{ agency.agency_name }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ agency.agency_name }}</h2>
+    <ul class="button">
+        {% if perms.PrimeNest.change_agency %}
+            <li>
+                <a href="{{ agency.get_update_url }}" class="button button-primary">Edit Agency</a>
+            </li>
+        {% endif %}
+        {% if perms.PrimeNest.delete_agency %}
+            <li>
+                <a href="{{ agency.get_delete_url }}" class="button button-primary">Delete Agency</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <p>Address: {{ agency.address }}</p>
+    <p>Contact: {{ agency.contact }}</p>
+    {% if agency.disambiguator %}
+        <p>Additional Info: {{ agency.disambiguator }}</p>
+    {% endif %}
+
+    <section>
+        <h3>Apartments managed by this Agency</h3>
+        <ul>
+            {% for apartment in apartments %}
+                <li><a href="{{ apartment.get_absolute_url }}">{{ apartment.address }}</a></li>
+            {% empty %}
+                <li><em>No apartments found for this agency.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

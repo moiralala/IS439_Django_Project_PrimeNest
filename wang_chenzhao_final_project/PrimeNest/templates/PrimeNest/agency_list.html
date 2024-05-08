@@ -1,0 +1,44 @@
+{% extends 'PrimeNest/base.html' %}
+
+{% block title %}
+    Agency List
+{% endblock %}
+
+{% block content %}
+    <h2>Agency List</h2>
+    {% if perms.PrimeNest.add_agency %}
+        <div>
+            <a href="{% url 'primenest_agency_create_urlpattern' %}"
+            class="button button-primary">
+            Create New Agency</a>
+        </div>
+    {% endif %}
+    <ul>
+        {% for agency in agency_list %}
+            <li>
+                <a href="{{ agency.get_absolute_url }}">{{ agency }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no agencies available.</em></li>
+        {% endfor %}
+    </ul>
+
+    {% if is_paginated %}
+        <ul>
+            {% if previous_page_url %}
+                <li>
+                    <a href="{{ previous_page_url }}">Previous</a>
+                </li>
+            {% endif %}
+            <li>
+                Page {{ instructor_list.number }}
+                of {{ paginator.num_pages }}
+            </li>
+            {% if next_page_url %}
+                <li>
+                    <a href="{{ next_page_url }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}
